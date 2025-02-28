@@ -1,0 +1,41 @@
+{
+    "version": "1.97.2.25045",
+    "description": "VSCodium: a telemetry-free version of Microsoft's Visual Studio Code. Bundled with Awesome Extensions.",
+    "homepage": "https://vscodium.com",
+    "license": "MIT",
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/VSCodium/vscodium/releases/download/1.97.2.25045/VSCodium-win32-x64-1.97.2.25045.zip",
+        "hash": "76785a71712718d469f99ee3aeb95209aff9f1154b553e39c81a40f0f3c811c6"
+      }
+    },
+    "extract_dir": "VSCodium",
+    "bin": [
+      "VSCodium\\VSCodium.exe"
+    ],
+    "shortcuts": [
+      [
+        "VSCodium\\VSCodium.exe",
+        "VSCodium"
+      ]
+    ],
+    "post_install": [
+        "$dir\\VSCodium.exe --install-extension aaron-bond.better-comments",
+        "$dir\\VSCodium.exe --install-extension dqisme.sync-scroll",
+        "$dir\\VSCodium.exe --install-extension eamodio.gitlens",
+        "$dir\\VSCodium.exe --install-extension editorconfig.editorconfig",
+        "$dir\\VSCodium.exe --install-extension esbenp.prettier-vscode",
+        "$dir\\VSCodium.exe --install-extension formulahendry.code-runner",
+        "$dir\\VSCodium.exe --install-extension golang.go",
+        "$dir\\VSCodium.exe --install-extension gruntfuggly.todo-tree",
+        "$dir\\VSCodium.exe --install-extension humao.rest-client",
+        "$dir\\VSCodium.exe --install-extension mitchdenny.ecdc",
+        "$dir\\VSCodium.exe --install-extension ms-dotnettools.vscode-dotnet-runtime",
+        "$dir\\VSCodium.exe --install-extension robbowen.synthwave-vscode",
+        "$dir\\VSCodium.exe --install-extension rust-lang.rust-analyzer",
+        "$dir\\VSCodium.exe --install-extension seatonjiang.gitmoji-vscode",
+        "$dir\\VSCodium.exe --install-extension sonarsource.sonarlint-vscode",
+        "$dir\\VSCodium.exe --install-extension sourcegraph.cody-ai",
+        "$dir\\VSCodium.exe --install-extension tamasfe.even-better-toml"
+    ]
+  }
