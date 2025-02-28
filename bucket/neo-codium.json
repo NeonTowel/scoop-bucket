@@ -23,23 +23,7 @@
         ]
     ],
     "post_install": [
-        "codium --install-extension aaron-bond.better-comments",
-        "codium --install-extension dqisme.sync-scroll",
-        "codium --install-extension eamodio.gitlens",
-        "codium --install-extension editorconfig.editorconfig",
-        "codium --install-extension esbenp.prettier-vscode",
-        "codium --install-extension formulahendry.code-runner",
-        "codium --install-extension golang.go",
-        "codium --install-extension gruntfuggly.todo-tree",
-        "codium --install-extension humao.rest-client",
-        "codium --install-extension mitchdenny.ecdc",
-        "codium --install-extension ms-dotnettools.vscode-dotnet-runtime",
-        "codium --install-extension robbowen.synthwave-vscode",
-        "codium --install-extension rust-lang.rust-analyzer",
-        "codium --install-extension seatonjiang.gitmoji-vscode",
-        "codium --install-extension sonarsource.sonarlint-vscode",
-        "codium --install-extension sourcegraph.cody-ai",
-        "codium --install-extension tamasfe.even-better-toml"
+        "codium --install-extension aaron-bond.better-comments --install-extension eamodio.gitlens --install-extension editorconfig.editorconfig --install-extension esbenp.prettier-vscode --install-extension formulahendry.code-runner --install-extension golang.go --install-extension gruntfuggly.todo-tree --install-extension humao.rest-client --install-extension mitchdenny.ecdc --install-extension ms-dotnettools.vscode-dotnet-runtime --install-extension robbowen.synthwave-vscode --install-extension rust-lang.rust-analyzer --install-extension seatonjiang.gitmoji-vscode --install-extension sonarsource.sonarlint-vscode --install-extension sourcegraph.cody-ai --install-extension tamasfe.even-better-toml"
     ],
     "persist": "data",
     "checkver": {
