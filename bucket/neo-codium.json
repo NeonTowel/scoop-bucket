@@ -9,15 +9,18 @@
         "hash": "76785a71712718d469f99ee3aeb95209aff9f1154b553e39c81a40f0f3c811c6"
       }
     },
-    "extract_dir": "VSCodium",
+    "env_add_path": "bin",
     "bin": [
-      "VSCodium.exe"
+        [
+            "bin/codium.cmd",
+            "vscodium"
+        ]
     ],
     "shortcuts": [
-      [
-        "VSCodium.exe",
-        "VSCodium"
-      ]
+        [
+            "VSCodium.exe",
+            "VSCodium"
+        ]
     ],
     "post_install": [
         "$dir\\VSCodium.exe --install-extension aaron-bond.better-comments",
@@ -37,5 +40,22 @@
         "$dir\\VSCodium.exe --install-extension sonarsource.sonarlint-vscode",
         "$dir\\VSCodium.exe --install-extension sourcegraph.cody-ai",
         "$dir\\VSCodium.exe --install-extension tamasfe.even-better-toml"
-    ]
-  }
+    ],
+    "persist": "data",
+    "checkver": {
+        "github": "https://github.com/VSCodium/vscodium"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-x64-$version.zip"
+            },
+            "arm64": {
+                "url": "https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-arm64-$version.zip"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256"
+        }
+    }
+}
