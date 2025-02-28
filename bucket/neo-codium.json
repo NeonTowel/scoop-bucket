@@ -11,11 +11,11 @@
     },
     "extract_dir": "VSCodium",
     "bin": [
-      "VSCodium\\VSCodium.exe"
+      "VSCodium.exe"
     ],
     "shortcuts": [
       [
-        "VSCodium\\VSCodium.exe",
+        "VSCodium.exe",
         "VSCodium"
       ]
     ],
