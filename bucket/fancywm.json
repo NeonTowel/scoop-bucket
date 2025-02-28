@@ -3,7 +3,7 @@
     "description": "FancyWM is a tiling window manager that enhances your workflow by providing utilities like release window movement and border highlighting.",
     "homepage": "https://github.com/FancyWM/fancywm",
     "license": "MIT",
-    "url": "https://github.com/FancyWM/fancywm/releases/download/v2.14.0/fancywm-v2.14.0.zip",
+    "url": "https://github.com/FancyWM/fancywm/releases/download/v2.14.0/FancyWM.Release.x64.zip",
     "hash": "5CBF44601F27D7A6F569439E40BF784DA82B13372EFCE9AF273925221C5D1AA7",
     "bin": "fancywm.exe"
   }
