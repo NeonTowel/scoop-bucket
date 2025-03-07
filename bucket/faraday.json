@@ -1,12 +1,12 @@
 {
-    "version": "0.7.8",
+    "version": "0.7.9",
     "description": "faraday cli (fai) is a Command-line AI chat with customizable API keys and URL",
     "homepage": "https://github.com/NeonTowel/faraday",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/NeonTowel/faraday/releases/download/0.7.8/fai-windows-amd64.zip",
-            "hash": "0088c9c59ba3727536209eb12eae9393d6dc840189416cf51b0bf660f327274b"
+            "url": "https://github.com/NeonTowel/faraday/releases/download/0.7.9/fai-windows-amd64.zip",
+            "hash": "9650e119e9672b5b780250335c0d080bf326a4af8afba3ac82cc9504a911462a"
         }
     },
     "bin": "fai.exe",
