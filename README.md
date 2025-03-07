@@ -25,6 +25,24 @@ We welcome contributions to expand the list of available packages. To contribute
 
 Please ensure you have read the [Contributing Guide](https://github.com/ScoopInstaller/.github/blob/main/.github/CONTRIBUTING.md) before submitting your pull request.
 
+## Update manifests
+
+To update a single manifest with latest versions, you can use the checkver.ps1 script:
+
+```pwsh
+.\bin\checkver.ps1 royal-ts -Update
+```
+
+This will update the manifest with the latest version and hash.
+
+To update all manifests, you can use the following command:
+
+```pwsh
+.\bin\checkver.ps1 -Update
+```
+
+Ensure the manifests contain the `autoupdate` section, see [App Manifests](https://github.com/ScoopInstaller/Scoop/wiki/App-Manifests) for more details.
+
 ## Support
 
 For any questions or support, please visit the [Scoop Community Support](https://github.com/ScoopInstaller/Scoop/discussions) page.
