@@ -9,7 +9,7 @@
             "hash": "0088c9c59ba3727536209eb12eae9393d6dc840189416cf51b0bf660f327274b"
         }
     },
-    "bin": "faraday.exe",
+    "bin": "fai.exe",
     "checkver": {
         "github": "https://github.com/NeonTowel/faraday",
         "regex": "tag/(v?[\\d.]+(-(rc|beta)\\d+)?)"
