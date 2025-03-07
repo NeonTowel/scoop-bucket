@@ -6,7 +6,7 @@
     "architecture": {
         "64bit": {
             "url": "https://download.royalapps.com/royalts/royalts_7.03.50102.0_x64.zip",
-            "hash": "d560627e5698c98d589d4bd9fe553f5da35a110e5da42451806e1f615b5cdb15"
+            "hash": "82960940214ca0fb186a509e8c6869c3332cd3a7ebacd9150ca7f3944c5c6e9c"
         }
     },
     "bin": "RoyalTS.exe",
