@@ -1,12 +1,12 @@
 {
-    "version": "d0f2e6e7e022d8e024f7eb7d085cadf3d1f4df20",
+    "version": "2d6a87f894b91f2d4a045294e1ad36d208023ccb",
     "description": "Cursor - The AI-first code editor based on VSCode with ChatGPT-like features",
     "homepage": "https://www.cursor.com",
     "license": "Proprietary",
     "architecture": {
         "64bit": {
-            "url": "https://downloads.cursor.com/production/d0f2e6e7e022d8e024f7eb7d085cadf3d1f4df20/win32/x64/user-setup/CursorUserSetup-x64-0.48.3.exe",
-            "hash": "d145d1e18e44522d3a603b757fcbdc9b98e6dcf16e49bc447262e75309b780d6"
+            "url": "https://downloads.cursor.com/production/2d6a87f894b91f2d4a045294e1ad36d208023ccb/win32/x64/user-setup/CursorUserSetup-x64-0.48.4.exe",
+            "hash": "8395149f51e164555f7b7e35c258097fbc57d45377790d4c3a6d9c91040cca08"
         }
     },
     "installer": {
