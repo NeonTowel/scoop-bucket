@@ -1,0 +1,38 @@
+{
+    "version": "0.16.0",
+    "description": "Gum: A tool for making shell scripts glamorous.",
+    "homepage": "https://github.com/charmbracelet/gum",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/charmbracelet/gum/releases/download/v0.16.0/gum_0.16.0_Windows_x86_64.zip",
+            "hash": "b9b4b38ba35ff47c572c4b55ddd0463e2ef3d574cb8701c29253ec64f5c370ed"
+        }
+    },
+    "env_add_path": "bin",
+    "bin": [
+        [
+            "gum.exe",
+            "gum"
+        ]
+    ],
+    "shortcuts": [
+        [
+            "gum.exe",
+            "Gum"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/charmbracelet/gum"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/charmbracelet/gum/releases/download/v$version/gum_$version_Windows_x86_64.zip"
+            }
+        },
+        "hash": {
+            "url": "https://github.com/charmbracelet/gum/releases/download/v$version/checksums.txt"
+        }
+    }
+}
