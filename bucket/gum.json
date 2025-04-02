@@ -9,17 +9,15 @@
             "hash": "b9b4b38ba35ff47c572c4b55ddd0463e2ef3d574cb8701c29253ec64f5c370ed"
         }
     },
-    "env_add_path": "bin",
+    "pre_install": [
+        "$versionedDir = (Get-ChildItem \"$dir\" | Where-Object { $_.PSIsContainer }).Name",
+        "Move-Item \"$dir\\$versionedDir\\*\" \"$dir\" -Force",
+        "Remove-Item \"$dir\\$versionedDir\" -Recurse -Force"
+    ],
     "bin": [
         [
             "gum.exe",
             "gum"
-        ]
-    ],
-    "shortcuts": [
-        [
-            "gum.exe",
-            "Gum"
         ]
     ],
     "checkver": {
