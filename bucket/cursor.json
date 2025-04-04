@@ -5,17 +5,12 @@
     "license": "Proprietary",
     "architecture": {
         "64bit": {
-            "url": "https://downloads.cursor.com/production/66290080aae40d23364ba2371832bda0933a3641/win32/x64/user-setup/CursorUserSetup-x64-0.48.7.exe",
-            "hash": "c8abbf2d7f5929deff1f5d869fba7565c34c1f41c17cb990d6911c7beed4020d"
+            "url": "https://downloads.cursor.com/production/1d623c4cc1d3bb6e0fe4f1d5434b47b958b05876/win32/x64/user-setup/CursorUserSetup-x64-0.48.7.exe",
+            "hash": "54185b0bee8dad42812d9eb376d918c537d5e98dd63bfb61c1251a04c4036287"
         }
     },
-    "installer": {
-        "script": "Start-Process -Wait -FilePath \"$dir\\CursorUserSetup-x64-$version.exe\" -ArgumentList '/S', \"/D=$dir\""
-    },
-    "uninstaller": {
-        "script": "Start-Process -Wait -FilePath \"$dir\\Uninstall Cursor.exe\" -ArgumentList '/S'"
-    },
-    "bin": "Cursor.exe",
+    "innosetup": true,
+    "extract_dir": "{code_GetDestDir}",
     "shortcuts": [
         [
             "Cursor.exe",
@@ -26,15 +21,47 @@
         "data",
         "resources\\app\\extensions"
     ],
+    "post_install": [
+        "$dirpath = \"$dir\".Replace('\\', '\\\\')",
+        "$exepath = \"$dir\\Cursor.exe\".Replace('\\', '\\\\')",
+        "'install-associations', 'uninstall-associations', 'install-context', 'uninstall-context' | ForEach-Object {",
+        "  if (Test-Path \"$dir\\$_.reg\") {",
+        "    $content = Get-Content \"$dir\\$_.reg\"",
+        "    $content = $content.Replace('$codedir', $dirpath)",
+        "    $content = $content.Replace('$code', $exepath)",
+        "    if ($global) {",
+        "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "    }",
+        "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+        "  }",
+        "}",
+        "if (!(Test-Path \"$dir\\data\\extensions\") -and (Test-Path \"$env:USERPROFILE\\.cursor\\extensions\")) {",
+        "    info '[Portable Mode] Copying extensions...'",
+        "    Copy-Item \"$env:USERPROFILE\\.cursor\\extensions\" \"$dir\\data\" -Recurse",
+        "}",
+        "if (!(Test-Path \"$dir\\data\\user-data\") -and (Test-Path \"$env:AppData\\Cursor\")) {",
+        "    info '[Portable Mode] Copying user data...'",
+        "    Copy-Item \"$env:AppData\\Cursor\" \"$dir\\data\\user-data\" -Recurse",
+        "}",
+        "$extensions_file = \"$dir\\data\\extensions\\extensions.json\"",
+        "if ((Test-Path \"$extensions_file\")) {",
+        "    info 'Adjusting path in extensions file...'",
+        "    (Get-Content \"$extensions_file\") -replace '(?<=cursor(/|\\\\\\\\)).*?(?=(/|\\\\\\\\)data(/|\\\\\\\\)extensions)', $version | Set-Content \"$extensions_file\"",
+        "}"
+    ],
+    "uninstaller": {
+        "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\uninstall-context.reg\" }"
+    },
     "checkver": {
-        "url": "https://raw.githubusercontent.com/oslook/cursor-ai-downloads/main/version-history.json",
-        "jp": "$.versions[0]",
-        "regex": "\"version\":\\s*\"([^\"]+)[\\s\\S]*?\"win32-x64\":\\s*\"([^\"]*)\""
+        "url": "https://api2.cursor.sh/updates/api/update/win32-x64-archive/cursor/0.0.0/stable",
+        "jsonpath": "$.url",
+        "regex": "(?<url>.*CursorUserSetup-x64-(?<version>[\\d.]+)\\.exe)",
+        "replace": "${version}"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "$match2"
+                "url": "$matchUrl"
             }
         }
     },
