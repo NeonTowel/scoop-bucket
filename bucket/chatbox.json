@@ -1,0 +1,38 @@
+{
+    "version": "0.10.4",
+    "description": "Chatbox: User-friendly Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama...)",
+    "homepage": "https://chatboxai.app/",
+    "license": "GPL-3.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/chatboxai/chatbox/releases/download/v0.10.4/Chatbox.CE-0.10.4-Setup.exe",
+            "hash": "ec5d0eefd92562fa7b2c5ab6ee7b4746567258ff58cb0de1f43721e7c1210b8e"
+        }
+    },
+    "pre_install": [
+        "Write-Host 'Extracting installer...'",
+        "7z e \"$dir\\Chatbox.CE-0.10.4-Setup.exe\" '$PLUGINSDIR\\app-64.7z' -o\"$dir\" -bsp0 -bso0 -y",
+        "Write-Host 'Attempting to extract app-64.7z...'",
+        "7z x \"$dir\\app-64.7z\" -o\"$dir\" -bsp0 -bso0 -y",
+        "Write-Host 'Removing temporary files...'",
+        "Remove-Item \"$dir\\app-64.7z\"",
+        "Remove-Item \"$dir\\Chatbox.CE-0.10.4-Setup.exe\""
+    ],
+    "bin": "Chatbox CE.exe",
+    "shortcuts": [
+        [
+            "Chatbox CE.exe",
+            "Chatbox"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/chatboxai/chatbox"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/chatboxai/chatbox/releases/download/v$version/Chatbox.CE-$version-Setup.exe"
+            }
+        }
+    }
+}
