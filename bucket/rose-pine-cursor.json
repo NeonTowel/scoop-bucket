@@ -14,8 +14,8 @@
         "Remove-Item \"$dir\\BreezeX-RosePineDawn-Windows.zip\"",
         "info 'Mouse cursor theme extracted successfully!'",
         "",
-        "To install new cursor theme, run as Administrator:",
-        "$dir\\install.inf"
+        "Write-Host 'To install new cursor theme, run as Administrator:'",
+        "Write-Host '$dir\\install.inf'"
     ],
     "checkver": {
         "github": "https://github.com/rose-pine/cursor"
@@ -26,5 +26,9 @@
                 "url": "https://github.com/rose-pine/cursor/releases/download/v$version/BreezeX-RosePineDawn-Windows.zip"
             }
         }
-    }
+    },
+    "notes": [
+        "To install new cursor theme, run as Administrator:",
+        "$dir\\install.inf"
+    ]
 }
