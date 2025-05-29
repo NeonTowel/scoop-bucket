@@ -9,14 +9,7 @@
             "hash": "9d92fac5089d92080b59d7b72fa975472ca88d10fa2a19189b1d1bc1b1b0ee67"
         }
     },
-    "post_install": [
-        "Expand-Archive -Path \"$dir\\BreezeX-RosePineDawn-Windows.zip\" -DestinationPath \"$dir\"",
-        "Remove-Item \"$dir\\BreezeX-RosePineDawn-Windows.zip\"",
-        "info 'Mouse cursor theme extracted successfully!'",
-        "",
-        "Write-Host 'To install new cursor theme, run as Administrator:'",
-        "Write-Host '$dir\\install.inf'"
-    ],
+    "extract_dir": "BreezeX-RosePineDawn-Windows",
     "checkver": {
         "github": "https://github.com/rose-pine/cursor"
     },
@@ -28,7 +21,9 @@
         }
     },
     "notes": [
-        "To install new cursor theme, run as Administrator:",
-        "$dir\\install.inf"
+        "",
+        "To install Rosé Pine Cursor theme, run as Administrator:",
+        " $dir\\install.inf",
+        ""
     ]
 }
