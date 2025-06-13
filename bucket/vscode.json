@@ -1,0 +1,149 @@
+{
+    "version": "1.100.2",
+    "description": "Visual Studio Code with NeonTowel's opinionated flavor",
+    "homepage": "https://code.visualstudio.com/",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://code.visualstudio.com/License/"
+    },
+    "notes": [
+        "🧩 Visual Studio Code with NeonTowel's opinionated flavor!",
+        "",
+        "✨ Key extensions installed:",
+        "  • Dev Containers     • WSL Remote",
+        "  • SSH Remote         • Catppuccin Theme",
+        "  • Catppuccin Icons   • Svelte",
+        "  • TOML Support       • Go",
+        "  • Rust Analyzer      • Indent Rainbow",
+        "  • Rainbow Brackets   • REST Client",
+        "  • Prettier           • EditorConfig",
+        "  • YAML Support",
+        "",
+        "🔧 Features:",
+        "  • Ready-to-code setup for multiple languages",
+        "  • Enhanced code quality, formatting, and collaboration",
+        "",
+        "ℹ️  For extension details, see the manifest or open Visual Studio Code > Extensions.",
+        "ℹ️  For best experience, install pwsh and the recommended font (nerd-fonts/fantasquesansm-nerd-font-mono).",
+        "",
+        "Add Visual Studio Code as a context menu option by running:",
+        "'reg import \"$dir\\install-context.reg\"'",
+        "For file associations, run:",
+        "'reg import \"$dir\\install-associations.reg\"'",
+        "For github integration, run:",
+        "'reg import \"$dir\\install-github-integration.reg\"'"
+    ],
+    "suggest": {
+        "Shell": [ "pwsh" ],
+        "Recommended Font": [ "nerd-fonts/FantasqueSansMono-NF-Mono" ]
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://update.code.visualstudio.com/1.100.2/win32-x64-archive/stable#/dl.7z",
+            "hash": "fbbe892b1a00d42f7822b3975dcfdc34c26817aabc3f033c4f3b9c314069043b"
+        },
+        "arm64": {
+            "url": "https://update.code.visualstudio.com/1.100.2/win32-arm64-archive/stable#/dl.7z",
+            "hash": "f1d38bb6186f1bc48fd6cdb84d2fec458fb2a3cb941d4b521082dc7bc4769e21"
+        }
+    },
+    "env_add_path": "bin",
+    "shortcuts": [
+        [
+            "code.exe",
+            "Visual Studio Code"
+        ]
+    ],
+    "post_install": [
+        "$dirpath = \"$dir\".Replace('\\', '\\\\')",
+        "$exepath = \"$dir\\Code.exe\".Replace('\\', '\\\\')",
+        "'install-associations', 'uninstall-associations', 'install-context', 'uninstall-context', 'install-github-integration', 'uninstall-github-integration' | ForEach-Object {",
+        "  if (Test-Path \"$bucketsdir\\neontowel\\scripts\\vscode\\$_.reg\") {",
+        "    $content = Get-Content \"$bucketsdir\\neontowel\\scripts\\vscode\\$_.reg\"",
+        "    $content = $content.Replace('$codedir', $dirpath)",
+        "    $content = $content.Replace('$code', $exepath)",
+        "    if ($global) {",
+        "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "    }",
+        "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+        "  }",
+        "}",
+        "if (!(Test-Path \"$dir\\data\\extensions\") -and (Test-Path \"$env:USERPROFILE\\.vscode\\extensions\")) {",
+        "    info '[Portable Mode] Copying extensions...'",
+        "    Copy-Item \"$env:USERPROFILE\\.vscode\\extensions\" \"$dir\\data\" -Recurse",
+        "}",
+        "if (!(Test-Path \"$dir\\data\\user-data\") -and (Test-Path \"$env:AppData\\Code\")) {",
+        "    info '[Portable Mode] Copying user data...'",
+        "    Copy-Item \"$env:AppData\\Code\" \"$dir\\data\\user-data\" -Recurse",
+        "}",
+        "$extensions_file = \"$dir\\data\\extensions\\extensions.json\"",
+        "if ((Test-Path \"$extensions_file\")) {",
+        "    info 'Adjusting path in extensions file...'",
+        "    (Get-Content \"$extensions_file\") -replace '(?<=vscode(/|\\\\\\\\)).*?(?=(/|\\\\\\\\)data(/|\\\\\\\\)extensions)', $version | Set-Content \"$extensions_file\"",
+        "}",
+        "",
+        "info 'Initializing VSCode...'",
+        "& \"$dir\\bin\\code.cmd\" --user-data-dir=\"$dir\\data\\user-data\" --extensions-dir=\"$dir\\data\\extensions\" --list-extensions | Out-Null",
+        "",
+        "info 'Installing extensions...'",
+        "# Install NeonTowel's opinionated and a curated set of extensions :P",
+        "& \"$dir\\bin\\code.cmd\" --user-data-dir=\"$dir\\data\\user-data\" --extensions-dir=\"$dir\\data\\extensions\" `",
+        "  --install-extension ms-vscode-remote.remote-containers `",
+        "  --install-extension ms-vscode-remote.remote-wsl `",
+        "  --install-extension ms-vscode-remote.remote-ssh `",
+        "  --install-extension Catppuccin.catppuccin-vsc `",
+        "  --install-extension Catppuccin.catppuccin-vsc-icons `",
+        "  --install-extension svelte.svelte-vscode `",
+        "  --install-extension tamasfe.even-better-toml `",
+        "  --install-extension golang.Go `",
+        "  --install-extension rust-lang.rust-analyzer `",
+        "  --install-extension oderwat.indent-rainbow `",
+        "  --install-extension tejasvi.rainbow-brackets-2 `",
+        "  --install-extension humao.rest-client `",
+        "  --install-extension esbenp.prettier-vscode `",
+        "  --install-extension EditorConfig.EditorConfig `",
+        "  --install-extension redhat.vscode-yaml",
+        "",
+        "info 'Applying default user settings...'",
+        "# Copy default settings.json if not present",
+        "$settingsSource = \"$bucketsdir\\neontowel\\scripts\\vscode\\settings.json\"",
+        "$settingsDestDir = \"$dir\\data\\user-data\\User\"",
+        "$settingsDest = \"$settingsDestDir\\settings.json\"",
+        "if (!(Test-Path $settingsDest) -and (Test-Path $settingsSource)) {",
+        "    if (!(Test-Path $settingsDestDir)) { New-Item -ItemType Directory -Path $settingsDestDir | Out-Null }",
+        "    Copy-Item $settingsSource $settingsDest",
+        "}"
+    ],
+    "uninstaller": {
+        "script": [
+            "if ($cmd -eq 'uninstall')",
+            "{",
+            "   reg import \"$dir\\uninstall-context.reg\" ",
+            "   reg import \"$dir\\uninstall-github-integration.reg\" ",
+            "}"
+        ]
+    },
+    "persist": "data",
+    "checkver": {
+        "url": "https://update.code.visualstudio.com/api/update/win32-x64-archive/stable/latest",
+        "jsonpath": "$.name"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://update.code.visualstudio.com/$version/win32-x64-archive/stable#/dl.7z",
+                "hash": {
+                    "url": "https://update.code.visualstudio.com/api/update/win32-x64-archive/stable/latest",
+                    "jsonpath": "$.sha256hash"
+                }
+            },
+            "arm64": {
+                "url": "https://update.code.visualstudio.com/$version/win32-arm64-archive/stable#/dl.7z",
+                "hash": {
+                    "url": "https://update.code.visualstudio.com/api/update/win32-arm64-archive/stable/latest",
+                    "jsonpath": "$.sha256hash"
+                }
+            }
+        }
+    }
+}
