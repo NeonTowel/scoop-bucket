@@ -1,12 +1,12 @@
 {
-    "version": "2.18.1",
+    "version": "2.19.0",
     "description": "A games launcher for GOG, Amazon and Epic Games for Linux, Windows and macOS.",
     "homepage": "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher",
     "license": "GPL-3.0",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.18.1/Heroic-2.18.1-Portable-x64.exe",
-            "hash": "b51a71cd448d2ac97cb64dc478028b7b81205be4dbb6ce80c997bb219fbf15c5"
+            "url": "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.19.0/Heroic-2.19.0-Portable-x64.exe",
+            "hash": "a358013f19d92463d822aee6672a6ca7dfb87d848b97a35a13bdeed031403a51"
         }
     },
     "pre_install": [
