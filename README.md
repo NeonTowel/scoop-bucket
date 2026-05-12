@@ -1,52 +1,87 @@
-# NeonTowel's Community Packages Scoop Bucket
+# NeonTowel's Community Scoop Bucket
 
 [![Tests](https://github.com/NeonTowel/scoop-bucket/actions/workflows/ci.yml/badge.svg)](https://github.com/NeonTowel/scoop-bucket/actions/workflows/ci.yml) [![Excavator](https://github.com/NeonTowel/scoop-bucket/actions/workflows/excavator.yml/badge.svg)](https://github.com/NeonTowel/scoop-bucket/actions/workflows/excavator.yml)
 
-Welcome to NeonTowel's community Scoop bucket repository! This repository hosts a collection of community-contributed packages for the [Scoop](https://scoop.sh) Windows command-line installer. The first package available is Royal TS.
+A community [Scoop](https://scoop.sh) bucket with a curated set of Windows applications not available in the official buckets.
 
 ## Installation
 
-To add this bucket to your Scoop installation and install Royal TS, run the following commands in PowerShell:
-
 ```pwsh
 scoop bucket add neontowel https://github.com/NeonTowel/scoop-bucket
-scoop install neontowel/royal-ts
+scoop install neontowel/<app-name>
 ```
 
-## Contributing
+## Available Packages
 
-We welcome contributions to expand the list of available packages. To contribute:
+| Package | Description |
+|---|---|
+| `azure-cli` | Azure command-line interface |
+| `awesome-git` | Git GUI client |
+| `chatbox` | Desktop AI chat client |
+| `cursor` | AI-first code editor based on VSCode |
+| `faraday` | Collaborative penetration testing platform |
+| `fancywm` | Dynamic tiling window manager for Windows |
+| `gum` | Glamorous shell script utilities |
+| `heroic` | Open source Epic Games and GOG launcher |
+| `ipcalc-go` | IP address calculator |
+| `neo-codium` | VSCodium with custom extensions |
+| `omt` | Oh My Tools |
+| `rose-pine-cursor` | Rosé Pine cursor theme |
+| `royal-ts` | Remote management solution (RDP, SSH, VNC) |
+| `see-through-windows-ng` | Make windows transparent |
+| `seethroughwindows` | Make windows transparent |
+| `seethroughwindows-beta` | Beta builds of SeeThroughWindows |
+| `startctl` | Windows Start menu controller |
+| `vscode` | Visual Studio Code |
 
-1. Fork the repository and clone it locally.
-2. Create a new manifest by copying `bucket/app-name.json.template` to `bucket/<app-name>.json`.
-3. Fill in the manifest details according to the [App Manifests](https://github.com/ScoopInstaller/Scoop/wiki/App-Manifests) guide.
-4. Commit your changes and push them to your fork.
-5. Open a pull request with a clear description of your changes.
+## Update Manifests
 
-Please ensure you have read the [Contributing Guide](https://github.com/ScoopInstaller/.github/blob/main/.github/CONTRIBUTING.md) before submitting your pull request.
-
-## Update manifests
-
-To update a single manifest with latest versions, you can use the checkver.ps1 script:
+Update a single manifest to its latest version:
 
 ```pwsh
-.\bin\checkver.ps1 royal-ts -Update
+.\bin\checkver.ps1 <app-name> -Update
 ```
 
-This will update the manifest with the latest version and hash.
-
-To update all manifests, you can use the following command:
+Update all manifests at once:
 
 ```pwsh
 .\bin\checkver.ps1 -Update
 ```
 
-Ensure the manifests contain the `autoupdate` section, see [App Manifests](https://github.com/ScoopInstaller/Scoop/wiki/App-Manifests) for more details.
+Verify download URLs are reachable:
 
-## Support
+```pwsh
+.\bin\checkurls.ps1
+```
 
-For any questions or support, please visit the [Scoop Community Support](https://github.com/ScoopInstaller/Scoop/discussions) page.
+Verify or regenerate SHA256 hashes:
+
+```pwsh
+.\bin\checkhashes.ps1
+```
+
+Format all manifests (run before committing):
+
+```pwsh
+.\bin\formatjson.ps1
+```
+
+## Contributing
+
+1. Fork the repository and clone it locally.
+2. Create `bucket/<app-name>.json` following the [App Manifests](https://github.com/ScoopInstaller/Scoop/wiki/App-Manifests) guide.
+3. Include `checkver` and `autoupdate` sections so the manifest stays current automatically.
+4. Run `.\bin\checkhashes.ps1 <app-name>` and `.\bin\checkurls.ps1 <app-name>` to validate.
+5. Run `.\bin\test.ps1` to pass the full test suite (requires Scoop, `BuildHelpers`, and `Pester >= 5.2.0`).
+6. Run `.\bin\formatjson.ps1` to normalize JSON formatting.
+7. Open a pull request with a description of the new or changed package.
+
+Please read the [Contributing Guide](https://github.com/ScoopInstaller/.github/blob/main/.github/CONTRIBUTING.md) before submitting a pull request.
+
+## Automation
+
+Manifests with `checkver` and `autoupdate` sections are updated automatically every 4 hours by [Excavator](https://github.com/ScoopInstaller/GithubActions), which opens PRs for any new versions it finds.
 
 ## License
 
-This project is licensed under the [Unlicense](LICENSE), which means it is free and unencumbered software released into the public domain.
+[Unlicense](LICENSE) — public domain.
